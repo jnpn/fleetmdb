@@ -39,6 +39,11 @@
 
 /* custom entries */
 
+.loading {
+    transition: all 0.1s ease;
+    opacity: 50%;
+}
+
 .App-header {
   grid-area: "header";
   color: beige;

@@ -12,7 +12,7 @@ function Movies({ titles, search, pick, selected, loading }) {
     if (titles.length) {
 	let filtered = search ? titles.filter(t => lowerCaseMatch(t.title, search)) : titles;
     return (
-      <ul className="ui movies">
+	<ul className={`ui movies ${ loading ? "loading" : "" }`}>
         { loader(loading) }
         {filtered.map(({ id, title }) => (
           <li className="movie" onClick={() => pick(id)} key={id}>
