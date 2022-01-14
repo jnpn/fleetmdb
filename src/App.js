@@ -5,8 +5,10 @@ import Movies from './Movies';
 import Viewer from './Viewer';
 
 function App() {
-  const [{search, titles, selected}, setState] = useState({
+  const [{search, titles, selected, viewings}, setState] = useState({
     search : "",
+    history : [],
+    viewings : 0,
     titles : [{
       id: '001',
       name: "robocop",
@@ -27,35 +29,42 @@ function App() {
       id: '005',
       name: "star wars",
       genre: "sf"
+    },{
+      id: '006',
+      name: "rambo",
+      genre: "act"
+    },{
+      id: '007',
+      name: "ronin",
+      genre: "cop"
+    },{
+      id: '008',
+      name: "fargo",
+      genre: "com"
     },],
     selected: null
   })
 
-  const pick = id => { console.log('picked', id); setState(prev => ({...prev, selected: id})) }
+  const pick = id => { console.log('picked', id); setState(prev => ({...prev, selected: id, viewings: viewings + 1})) }
   const reset = () => { console.log(search); setState(prev => ({...prev, search: "", selected: null })) }
-  const theMovie = id => {
-    let q = titles.find(t => t.id === id);
-    return q ? q : {name:null};
-  }
-  const research = term => { console.log(">",term); setState(prev => ({...prev, search: term})); }
+  const theMovie = id => titles.find(t => t.id === id)
+  const research = term => setState(prev => ({...prev, search: term}))
 
   return (
-    <div className="App">
-      <header className="App-header">tmdb test app</header>
+    <div className="App ui container">
       <div className="main">
         <Search value={search} research={research}/>
         <Movies titles={titles} search={search} pick={(id) => pick(id)}/>
-        <Viewer movie={theMovie(selected).name}/>
+        <Viewer reset={reset} movie={theMovie(selected)}/>
       </div>
+      <div className="viewings">{viewings}</div>
       <div className="debug">
-        <button onClick={reset}>reset</button>
         <pre> 
           search: {search};
-          movie: {theMovie(selected).name};
-          titles: {(titles.reduce((p, {name}) => p + "," + name, "?"))}; 
+          viewings: {viewings};
+          movie: {theMovie(selected) ? theMovie(selected).name : "???"};
         </pre>
       </div>
-      <footer>(c) Copyright fleet { new Date().getFullYear() }</footer>
     </div>
   );
 }
