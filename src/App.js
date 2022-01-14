@@ -40,13 +40,6 @@ function App() {
         <Viewer reset={reset} movie={theMovie(selected)}/>
       </div>
       <div className="viewings">{viewings}</div>
-      <div className="debug">
-        <pre> 
-          search: {search};
-          viewings: {viewings};
-          movie: {theMovie(selected) ? theMovie(selected).name : "???"};
-        </pre>
-      </div>
     </div>
   );
 }
