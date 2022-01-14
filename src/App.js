@@ -6,7 +6,7 @@ import Viewer from './Viewer';
 
 function App() {
 
-  const LIMIT = 15
+  const LIMIT = 10
   const DELAY = 400
 
   const [{search, titles, selected, viewings}, setState] = useState({
