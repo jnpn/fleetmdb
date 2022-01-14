@@ -126,6 +126,16 @@ footer {
   font-weight: bold;
 }
 
+.viewings.todos {
+    color: white;
+    font-size: 9pt;
+}
+
+.viewings.bottom {
+    top:auto;
+    bottom:0;
+}
+
 .debug {
   display: none;
 }
