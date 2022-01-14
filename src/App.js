@@ -15,39 +15,7 @@ function App() {
     search : "",
     history : [],
     viewings : 0,
-    titles : [{
-      id: '001',
-      name: "robocop",
-      genre: "sf"
-    },{
-      id: '002',
-      name: "the terminator",
-      genre: "sf"
-    },{
-      id: '003',
-      name: "alien",
-      genre: "sf"
-    },{
-      id: '004',
-      name: "the abyss",
-      genre: "sf"
-    },{
-      id: '005',
-      name: "star wars",
-      genre: "sf"
-    },{
-      id: '006',
-      name: "rambo",
-      genre: "act"
-    },{
-      id: '007',
-      name: "ronin",
-      genre: "cop"
-    },{
-      id: '008',
-      name: "fargo",
-      genre: "com"
-    },],
+    titles : [],
     selected: null
   })
 
@@ -55,7 +23,7 @@ function App() {
       setTimeout(() => fetch(endpoint)
 		 .then(r => r.json())
 		 .then(ts => ts.results.slice(0,15))
-		 .then(ts => ts.map(t => ({id:t.id, name:t.original_title, genre: t.genre_ids[0]})))
+		 // .then(ts => ts.map(t => ({id:t.id, name:t.original_title, genre: t.genre_ids[0]})))
 		 .then(ts => setState(prev => ({ ...prev, titles: ts }))), 2000);
   }, [endpoint]);
 
