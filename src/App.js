@@ -49,6 +49,7 @@ function App() {
   const reset = () => { console.log(search); setState(prev => ({...prev, search: "", selected: null })) }
   const theMovie = id => titles.find(t => t.id === id)
   const research = term => setState(prev => ({...prev, search: term}))
+  const resetViewing = () => { setState(prev => ({...prev, viewings: 0})) }
 
   return (
     <div className="App ui container">
@@ -57,7 +58,7 @@ function App() {
         <Movies titles={titles} selected={selected} search={search} pick={(id) => pick(id)}/>
         <Viewer reset={reset} movie={theMovie(selected)}/>
       </div>
-      <div className="viewings">{viewings}</div>
+	  <div className="viewings" onClick={resetViewing}>{viewings}</div>
       <div className="debug">
         <pre> 
           search: {search};

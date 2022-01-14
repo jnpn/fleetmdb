@@ -126,6 +126,11 @@ footer {
   font-weight: bold;
 }
 
+.viewings:hover {
+  color: cyan;
+  cursor: pointer;
+}
+
 .debug {
   display: none;
 }
