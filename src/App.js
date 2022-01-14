@@ -6,7 +6,10 @@ import Viewer from './Viewer';
 
 function App() {
 
-  useEffect(() => { console.log('boot'); });
+  useEffect(() => { console.log('boot'); }, []);
+
+  const apiKey = "6901d4bcbda9bb060db018be423abb96"
+  const endpoint = "https://api.themoviedb.org/3/movie/popular/?api_key=" + apiKey
 
   const [{search, titles, selected, viewings}, setState] = useState({
     search : "",
@@ -47,6 +50,15 @@ function App() {
     },],
     selected: null
   })
+
+  useEffect(() => {
+      setTimeout(() => fetch(endpoint)
+		 .then(r => r.json())
+		 .then(ts => ts.results.slice(0,15))
+		 .then(ts => ts.map(t => ({id:t.id, name:t.original_title, genre: t.genre_ids[0]})))
+		 .then(ts => setState(prev => ({ ...prev, titles: ts }))), 2000);
+  }, [endpoint]);
+
 
   const pick = id => { console.log('picked', id); setState(prev => ({...prev, selected: id, viewings: viewings + 1})) }
   const reset = () => { console.log(search); setState(prev => ({...prev, search: "", selected: null })) }
