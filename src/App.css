@@ -87,8 +87,13 @@ footer {
   justify-content: center;
 }
 
-.viewer .playing {
+.card .image {
   cursor: pointer;
+}
+
+.card .image img {
+  height: 200px !important;
+  width: auto !important;
 }
 
 .movie {
