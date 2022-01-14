@@ -23,8 +23,7 @@ function App() {
       setTimeout(() => fetch(endpoint)
 		 .then(r => r.json())
 		 .then(ts => ts.results.slice(0,15))
-		 // .then(ts => ts.map(t => ({id:t.id, name:t.original_title, genre: t.genre_ids[0]})))
-		 .then(ts => setState(prev => ({ ...prev, titles: ts }))), 2000);
+		 .then(ts => setState(prev => ({ ...prev, titles: ts }))), 400);
   }, [endpoint]);
 
 
