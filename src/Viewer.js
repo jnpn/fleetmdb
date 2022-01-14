@@ -16,8 +16,8 @@ function Viewer({ movie, reset }) {
               alt={"movie poster for " + name}
             ></img>
           </div>
-          <div class="content">
-            <div class="header">
+          <div className="content">
+            <div className="header">
               <a
                 target="_blank"
                 rel="noreferrer"
@@ -26,12 +26,12 @@ function Viewer({ movie, reset }) {
                 {name}
               </a>
             </div>
-	    <div class="description">
+	    <div className="description">
 	    {movie.overview.slice(0,80) + "..."}
 	    </div>
           </div>
-          <div class="extra content">
-            <span class="right floated">{movie.release_date}</span>
+          <div className="extra content">
+            <span className="right floated">{movie.release_date}</span>
             <span></span>
           </div>
         </div>
