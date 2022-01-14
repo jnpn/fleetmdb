@@ -95,6 +95,7 @@ footer {
   margin-left: 1em;
   list-style: none;
   text-align: left;
+  border-bottom: thin solid #e2e2ea;
 }
 
 .movie .selected {
