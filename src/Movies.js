@@ -16,7 +16,7 @@ function Movies({ titles, search, pick, selected }) {
     );
   } else {
     return (
-      <div class="ui movies">
+      <div className="ui movies">
         <p>Loading from TMDB...</p>
       </div>
     );
