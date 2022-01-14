@@ -17,8 +17,8 @@ function App() {
   })
 
   const apiKey = "6901d4bcbda9bb060db018be423abb96"
-  const defaultEndPoint = "https://api.themoviedb.org/3/movie/popular/?api_key=" + apiKey
-  const searchEndPoint =`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`
+  const defaultEndPoint = `//api.themoviedb.org/3/movie/popular/?api_key=${apiKey}`
+  const searchEndPoint =`//api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`
 
   useEffect(() => { 
       setTimeout(() => {
@@ -26,7 +26,8 @@ function App() {
 	  fetch(endpoint)
 	      .then(r => r.json())
 	      .then(ts => ts.results.slice(0,LIMIT))
-	      .then(ts => setState(prev => ({ ...prev, titles: ts }))) }, DELAY);
+	      .then(ts => setState(prev => ({ ...prev, titles: ts })))
+	      .catch(e => console.log('[error]', e)) }, DELAY);
   }, [defaultEndPoint, searchEndPoint, search]);
 
   const pick = id => setState(prev => ({...prev, selected: id, viewings: viewings + 1}))
