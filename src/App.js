@@ -9,6 +9,9 @@ function App() {
   const apiKey = "6901d4bcbda9bb060db018be423abb96"
   const endpoint = "https://api.themoviedb.org/3/movie/popular/?api_key=" + apiKey
 
+  const LIMIT = 15
+  const DELAY = 400
+
   const [{search, titles, selected, viewings}, setState] = useState({
     search : "",
     viewings : 0,
@@ -19,8 +22,8 @@ function App() {
   useEffect(() => {
       setTimeout(() => fetch(endpoint)
 		 .then(r => r.json())
-		 .then(ts => ts.results.slice(0,15))
-		 .then(ts => setState(prev => ({ ...prev, titles: ts }))), 400);
+		 .then(ts => ts.results.slice(0,LIMIT))
+		 .then(ts => setState(prev => ({ ...prev, titles: ts }))), DELAY);
   }, [endpoint]);
 
 
