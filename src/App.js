@@ -17,7 +17,7 @@ function App() {
   })
 
   const apiKey = "6901d4bcbda9bb060db018be423abb96"
-  const defaultEndPoint = `//api.themoviedb.org/3/movie/popular/?api_key=${apiKey}`
+  const defaultEndPoint = `//api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
   const searchEndPoint =`//api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`
 
   useEffect(() => { 
