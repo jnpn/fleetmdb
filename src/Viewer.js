@@ -1,10 +1,29 @@
 import { capitalizeAll } from "./prelude";
+import { useState, useEffect } from 'react';
 
 function Viewer({ movie, reset }) {
-  let poster =
-    "https://dalk4zrp4jp3q.cloudfront.net/images/mac_YFVkNF/movie_placeholder_big_2x.png";
+
+    let poster = "https://ephygie.com/wp-content/uploads/2016/05/Point-dinterrogation-10.png";
+
+    const [posters,setPosters] = useState([]);
+
+    useEffect(() => {
+	if (movie) {
+	const apiKey = "6901d4bcbda9bb060db018be423abb96"
+	let endpoint = `//api.themoviedb.org/3/movie/${movie.id}/images?api_key=${apiKey}`
+	let base = "https://image.tmdb.org/t/p/original/"
+	fetch(endpoint)
+	    .then(r => r.json())
+	    .then(j => j.posters.map(p => base + p.file_path))
+		.then(imgs => { console.log(posters, imgs); return imgs; })
+		.then(imgs => setPosters(() => (imgs)))
+	    .catch(console.log)
+	}
+    }
+    ,[movie])
+
   if (movie) {
-    let name = capitalizeAll(movie.title);
+      let name = capitalizeAll(movie.title);
     return (
       <div className="viewer">
         <div className="ui card">
@@ -28,6 +47,9 @@ function Viewer({ movie, reset }) {
             </div>
 	    <div className="description">
 	    {movie.overview.slice(0,180) + "..."}
+	    <ul className="posters">
+	    { posters.slice(0,10).map(p => { return (<li key={p}><img src={p}></img></li>)}) }
+	    </ul>
 	    </div>
           </div>
           <div className="extra content">

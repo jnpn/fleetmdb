@@ -96,6 +96,11 @@ footer {
   width: auto !important;
 }
 
+.card .posters img {
+    height: 200px;
+    width: auto;
+}
+
 .movie {
   margin-left: 1em;
   list-style: none;
