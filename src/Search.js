@@ -1,5 +1,5 @@
 function Search (props) {
-    return (<div className="search">
+    return (<div className="ui input search">
         <input
             placeholder="search..." 
             value={props.value}
