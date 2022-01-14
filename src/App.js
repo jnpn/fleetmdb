@@ -9,7 +9,8 @@ function App() {
   const LIMIT = 10
   const DELAY = 400
 
-  const [{search, titles, selected, viewings}, setState] = useState({
+  const [{search, titles, selected, viewings, loading}, setState] = useState({
+    loading: false,
     search : "",
     viewings : 0,
     titles : [],
@@ -23,10 +24,12 @@ function App() {
   useEffect(() => { 
       setTimeout(() => {
 	  let endpoint = (search === "") ? defaultEndPoint : searchEndPoint;
+	  setState(prev => ({...prev, loading:true}))
 	  fetch(endpoint)
 	      .then(r => r.json())
 	      .then(ts => ts.results.slice(0,LIMIT))
 	      .then(ts => setState(prev => ({ ...prev, titles: ts })))
+	      .then(() => setTimeout(() => setState(prev => ({ ...prev, loading: false })), 200))
 	      .catch(e => console.log('[error]', e)) }, DELAY);
   }, [defaultEndPoint, searchEndPoint, search]);
 
@@ -39,7 +42,7 @@ function App() {
     <div className="App ui container">
       <div className="main">
         <Search value={search} research={research}/>
-        <Movies titles={titles} selected={selected} search={search} pick={(id) => pick(id)}/>
+        <Movies titles={titles} loading={loading} selected={selected} search={search} pick={(id) => pick(id)}/>
         <Viewer reset={reset} movie={theMovie(selected)}/>
       </div>
       <div className="viewings">{viewings}</div>
