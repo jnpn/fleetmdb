@@ -4,17 +4,16 @@ function Viewer({ movie, reset }) {
   let poster =
     "https://dalk4zrp4jp3q.cloudfront.net/images/mac_YFVkNF/movie_placeholder_big_2x.png";
   if (movie) {
-    let name = capitalizeAll(movie.name);
+    let name = capitalizeAll(movie.title);
     return (
       <div className="viewer">
         <div className="ui card">
-          <div className="image">
-            <img
-              className="playing"
+            <div className="image">
+	    <img src="https://i.imgur.com/GyFDs98.png"
+              className="film icon playing"
               title="click to reset"
               onClick={() => reset()}
-              src={poster}
-              alt={"movie poster for " + movie.name}
+              alt={"movie poster for " + name}
             ></img>
           </div>
           <div class="content">
@@ -22,14 +21,17 @@ function Viewer({ movie, reset }) {
               <a
                 target="_blank"
                 rel="noreferrer"
-                href={"https://www.imdb.com/find?s=all&q=" + movie.name}
+                href={"https://www.imdb.com/find?s=all&q=" + name}
               >
                 {name}
               </a>
             </div>
+	    <div class="description">
+	    {movie.overview.slice(0,80) + "..."}
+	    </div>
           </div>
           <div class="extra content">
-            <span class="right floated">{movie.genre}</span>
+            <span class="right floated">{movie.release_date}</span>
             <span></span>
           </div>
         </div>
