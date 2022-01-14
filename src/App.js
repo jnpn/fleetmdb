@@ -54,7 +54,7 @@ function App() {
     <div className="App ui container">
       <div className="main">
         <Search value={search} research={research}/>
-        <Movies titles={titles} search={search} pick={(id) => pick(id)}/>
+        <Movies titles={titles} selected={selected} search={search} pick={(id) => pick(id)}/>
         <Viewer reset={reset} movie={theMovie(selected)}/>
       </div>
       <div className="viewings">{viewings}</div>

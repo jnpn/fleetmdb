@@ -97,6 +97,10 @@ footer {
   text-align: left;
 }
 
+.movie .selected {
+    font-weight: bold;
+}
+
 .movie .name {
   cursor: pointer;
   color: blue;
