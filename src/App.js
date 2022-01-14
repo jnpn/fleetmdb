@@ -6,9 +6,6 @@ import Viewer from './Viewer';
 
 function App() {
 
-  const apiKey = "6901d4bcbda9bb060db018be423abb96"
-  const endpoint = "https://api.themoviedb.org/3/movie/popular/?api_key=" + apiKey
-
   const LIMIT = 15
   const DELAY = 400
 
@@ -19,13 +16,18 @@ function App() {
     selected: null
   })
 
-  useEffect(() => {
-      setTimeout(() => fetch(endpoint)
-		 .then(r => r.json())
-		 .then(ts => ts.results.slice(0,LIMIT))
-		 .then(ts => setState(prev => ({ ...prev, titles: ts }))), DELAY);
-  }, [endpoint]);
+  const apiKey = "6901d4bcbda9bb060db018be423abb96"
+  const defaultEndPoint = "https://api.themoviedb.org/3/movie/popular/?api_key=" + apiKey
+  const searchEndPoint =`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`
 
+  useEffect(() => { 
+      setTimeout(() => {
+	  let endpoint = (search === "") ? defaultEndPoint : searchEndPoint;
+	  fetch(endpoint)
+	      .then(r => r.json())
+	      .then(ts => ts.results.slice(0,LIMIT))
+	      .then(ts => setState(prev => ({ ...prev, titles: ts }))) }, DELAY);
+  }, [defaultEndPoint, searchEndPoint, search]);
 
   const pick = id => setState(prev => ({...prev, selected: id, viewings: viewings + 1}))
   const reset = () => setState(prev => ({...prev, search: "", selected: null }))
