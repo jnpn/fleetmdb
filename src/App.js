@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Search from './Search';
 import Movies from './Movies';
 import Viewer from './Viewer';
+import History from './History';
 
 import { title } from './prelude';
 
@@ -14,12 +15,12 @@ function App() {
   const initialState = {
     loading: false,
     search : "",
-    viewings : 0,
+    history : [],
     titles : [],
     selected: null,
     inview: null,
   }
-  const [{search, titles, selected, viewings, loading, inview}, setState] = useState(initialState)
+  const [{search, titles, selected, history, loading, inview}, setState] = useState(initialState)
 
   const apiKey = "6901d4bcbda9bb060db018be423abb96"
   const defaultEndPoint = `//api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
@@ -41,7 +42,15 @@ function App() {
 
   useEffect(firstFetch, [defaultEndPoint, searchEndPoint, search]);
 
-  const pick = id => setState(prev => ({...prev, selected: id, inview: theMovie(id), viewings: viewings + 1}))
+  const pick = (id,movie) => setState(prev => {
+    let m = theMovie(id);
+    if (m) {
+      return ({...prev, selected: id, inview: m, history: history.concat(m) })
+    }
+    if (movie) {
+      return ({...prev, selected: id, inview: movie, history:history.concat(movie) })
+    }
+  })
   const reset = () => { setState(initialState); firstFetch(); }
   const theMovie = id => titles.find(t => t.id === id)
   const research = term => setState(prev => ({...prev, search: term}))
@@ -53,7 +62,10 @@ function App() {
         <Movies titles={titles} loading={loading} selected={selected} search={search} pick={(id) => pick(id)}/>
         <Viewer reset={reset} movie={inview}/>
       </div>
-      <div className="viewings">{viewings}</div>
+      <History
+        history={history}
+        pick={pick}>
+      </History>
     </div>
   );
 }
