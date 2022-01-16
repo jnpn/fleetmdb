@@ -1,10 +1,19 @@
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
 function Search (props) {
-    return (<div className="ui input search">
-        <input
-            placeholder="search..." 
-            value={props.value}
-            onChange={e => props.research(e.target.value)}></input>
-    </div>)
+  return (<Box
+	    component="form"
+	    sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }}
+	    noValidate
+	    autoComplete="off">
+	    <TextField
+	    id="search"
+	    label="title"
+	    value={props.value}
+	    onChange={e => props.research(e.target.value)}
+	  />
+	  </Box>)
 }
 
 export default Search;

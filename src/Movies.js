@@ -1,27 +1,31 @@
 import { lowerCaseMatch } from './prelude';
 
-function loader(loading) {
-    if (loading) {
-	return (<div className="ui active mini centered inline loader"></div>)
-    } else {
-	return (<p></p>);
-    }
-}
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+
+// import Divider from '@mui/material/Divider';
+// import ListItemIcon from '@mui/material/ListItemIcon';
+// import InboxIcon from '@mui/icons-material/Inbox';
+// import DraftsIcon from '@mui/icons-material/Drafts';
 
 function Movies({ titles, search, pick, selected, loading }) {
     if (titles.length) {
 	let filtered = search ? titles.filter(t => lowerCaseMatch(t.title, search)) : titles;
     return (
-	<ul className={`ui movies ${ loading ? "loading" : "" }`}>
-        { loader(loading) }
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+	<List dense className={`ui movies ${ loading ? "loading" : "" }`}>
         {filtered.map(({ id, title }) => (
-          <li className="movie" onClick={() => pick(id)} key={id}>
-            <span className={"name" + (selected === id ? " selected" : "")}>
-              {title}
-            </span>
-          </li>
+          <ListItem className="movie" onClick={() => pick(id)} key={id}>
+            <ListItemButton className={"name" + (selected === id ? " selected" : "")}>
+              <ListItemText>{title}</ListItemText>
+            </ListItemButton>
+          </ListItem>
         ))}
-      </ul>
+      </List>
+	</Box>
     );
   } else {
     return (

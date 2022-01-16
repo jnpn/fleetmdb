@@ -1,12 +1,23 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+
 import Search from './Search';
 import Movies from './Movies';
 import Viewer from './Viewer';
 
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+
 function App() {
 
-  const LIMIT = 10
+  const LIMIT = 8
   const DELAY = 400
 
   const [{search, titles, selected, viewings, loading, inview}, setState] = useState({
@@ -35,19 +46,45 @@ function App() {
   }, [defaultEndPoint, searchEndPoint, search]);
 
   const pick = id => setState(prev => ({...prev, selected: id, inview: theMovie(id), viewings: viewings + 1}))
-  const reset = () => setState(prev => ({...prev, search: "", selected: null }))
+  const reset = () => setState(prev => ({...prev, search: "", selected: null, inview: null, viewings: 0 }))
   const theMovie = id => titles.find(t => t.id === id)
   const research = term => setState(prev => ({...prev, search: term}))
 
+  const logged = msg => f => () => { console.log(msg, f); let v = f(); console.log('done'); return v; }
+
   return (
-    <div className="App ui container">
-      <div className="main">
-        <Search value={search} research={research}/>
-        <Movies titles={titles} loading={loading} selected={selected} search={search} pick={(id) => pick(id)}/>
-        <Viewer reset={reset} movie={inview}/>
-      </div>
-      <div className="viewings">{viewings}</div>
-    </div>
+    <>
+      <AppBar position="static">
+        <Toolbar>
+          <Button color="inherit">|||</Button>{" "}
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            fleetmbd
+          </Typography>
+	  <ButtonGroup variant="contained" size="small">
+	      <Button># ({viewings})</Button>
+	      <Button onClick={logged('wat')(reset)}>reset</Button>
+	      <Button disabled>...</Button>
+	  </ButtonGroup>
+        </Toolbar>
+      </AppBar>
+      <CssBaseline />
+      <Container fixed className="App" maxWidth="">
+        <Box>
+	  <main>
+	    <Search value={search}
+		    research={research}/>
+	    <Movies titles={titles}
+		    loading={loading}
+		    selected={selected}
+		    search={search}
+		    pick={(id) => pick(id)}/>
+	    <Viewer reset={reset}
+		    movie={inview}/>
+	  </main>
+	</Box>
+      </Container>
+    </>
+
   );
 }
 
