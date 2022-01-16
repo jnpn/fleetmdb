@@ -15,6 +15,8 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
+import Icon from '@mui/material/Icon';
+
 function App() {
 
   const LIMIT = 8
@@ -55,23 +57,22 @@ function App() {
   return (
     <>
       <AppBar position="static">
-        <Toolbar variant="dense">
-          <Button color="inherit">|||</Button>{" "}
+      <Toolbar >
+          <Button color="inherit"><Icon>share</Icon></Button>
+          <Search value={search} research={research}/>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             fleetmbd
           </Typography>
 	  <ButtonGroup variant="contained" size="small">
-	      <Button ># ({viewings})</Button>
-	      <Button onClick={logged('logging reset button')(reset)}>reset</Button>
+            <Button ># ({viewings})</Button>
+	    <Button onClick={logged('logging reset button')(reset)}>reset</Button>
 	  </ButtonGroup>
         </Toolbar>
       </AppBar>
       <CssBaseline />
-      <Container fixed className="App" maxWidth="">
+      <Container  className="App">
         <Box>
 	  <main>
-	    <Search value={search}
-		    research={research}/>
 	    <Movies titles={titles}
 		    loading={loading}
 		    selected={selected}

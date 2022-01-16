@@ -4,12 +4,14 @@ import TextField from '@mui/material/TextField';
 function Search (props) {
   return (<Box
 	    component="form"
-	    sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, }}
+	    sx={{ '& .MuiTextField-root': { m: 0, width: '25ch' }, }}
 	    noValidate
 	    autoComplete="off">
 	    <TextField
 	    id="search"
-	    label="title"
+	  label="title"
+	  size="small"
+	  variant="standard"
 	    value={props.value}
 	    onChange={e => props.research(e.target.value)}
 	  />
