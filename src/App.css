@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
@@ -57,12 +57,12 @@ footer {
 }
 
 #root {
-    margin: 1em;
-    padding: 1em;
-    border: thin solid beige;
+    padding-top: 1em;
 }
 
 .main {
+  padding: 1em;
+
   min-height: 400px;
   background-color: beige;
   display: grid;
@@ -156,4 +156,17 @@ footer {
 
 .debug {
   display: none;
+}
+
+/* StatFooter */
+
+.statfooter {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    background-color: #e6e6bc; /* #e8e8ac; */
+    color: gray;
+}
+
+.statfooter li {
+    list-style: none;
 }
