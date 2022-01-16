@@ -11,6 +11,14 @@ const routes = [{
   path: '/',
   element: <App/>,
 },{
+  path: '/watch',
+  children: [{
+    path: ':id',
+    element: <pre>...id?...</pre>,
+    loader: async ({params: {id}}) => { alert(id) },
+  }],
+  element: <h1>About</h1>,
+},{
   path: '/about',
   element: <h1>About</h1>,
 },{

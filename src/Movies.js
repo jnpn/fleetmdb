@@ -1,3 +1,4 @@
+import { Link } from 'react-location';
 import { lowerCaseMatch } from './prelude';
 
 function loader(loading) {
@@ -18,7 +19,8 @@ function Movies({ titles, search, pick, selected, loading }) {
           <li className="movie" onClick={() => pick(id)} key={id}>
             <span className={"name" + (selected === id ? " selected" : "")}>
               {title}
-            </span>
+          </span>
+	    <Link to={'/watch/'+id}>watch({id})</Link>
           </li>
         ))}
       </ul>

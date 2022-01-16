@@ -1,5 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-location';
 import Search from './Search';
 import Movies from './Movies';
 import Viewer from './Viewer';
@@ -46,7 +47,10 @@ function App() {
         <Movies titles={titles} loading={loading} selected={selected} search={search} pick={(id) => pick(id)}/>
         <Viewer reset={reset} movie={inview}/>
       </div>
-      <div className="viewings">{viewings}</div>
+      <div className="viewings">
+	{viewings}
+	<Link to='/about'>about</Link>
+      </div>
     </div>
   );
 }
