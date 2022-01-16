@@ -55,9 +55,16 @@ footer {
   color: white;
   padding: 8px;
 }
+
+#root {
+    margin: 1em;
+    padding: 1em;
+    border: thin solid beige;
+}
+
 .main {
-  margin: 1em;
   min-height: 400px;
+  background-color: beige;
   display: grid;
   grid-gap: 0.5em;
   grid-template-areas: "search viewer"

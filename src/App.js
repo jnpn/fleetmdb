@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Search from './Search';
 import Movies from './Movies';
 import Viewer from './Viewer';
+import StatFooter from './StatFooter';
 
 import { title } from './prelude';
 
@@ -54,6 +55,7 @@ function App() {
         <Viewer reset={reset} movie={inview}/>
       </div>
       <div className="viewings">{viewings}</div>
+      <StatFooter></StatFooter>
     </div>
   );
 }
