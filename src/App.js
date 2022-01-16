@@ -54,10 +54,17 @@ function App() {
   const reset = () => { setState(initialState); firstFetch(); }
   const theMovie = id => titles.find(t => t.id === id)
   const research = term => setState(prev => ({...prev, search: term}))
-  const rem = m => {
-    let h = history.filter(e => e.id !== m.id)
+  const remByIndex = i => {
+    let h = history.filter((e,j) => i !== j)
     setState(p => ({...p, history: h}))
   }
+  const remById= id => {
+    let h = history.filter(m => m.id !== id)
+    setState(p => ({...p, history: h}))
+  }
+
+  const clean = () => setState(p => ({...p, history:[]}))
+
   return (
     <div className="App ui container">
       <div className="main">
@@ -67,7 +74,9 @@ function App() {
       </div>
       <History
         history={history}
-        rem={rem}
+        remidx={remByIndex}
+        remid={remById}
+        clean={clean}
         pick={pick}>
       </History>
     </div>

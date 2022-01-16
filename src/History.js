@@ -1,14 +1,15 @@
 import { uuid } from './uuid';
 
-function History({history, pick, rem}) {
+function History({history, pick, remidx, remid, clean}) {
   return (<div className="viewings">
-	  <h1>history ({ history.length })</h1>
+	  <h1>history ({ history.length })<button onClick={clean}>clean</button></h1>
 	  {
 	    history.length ?
 	      <ul>
-	      {history.map(m => (<li key={m.id+uuid()}><span>{m.title}</span>
+	      {history.map((m,i) => (<li key={m.id+uuid()}><span>{m.title}</span>
+				 <button onClick={() => remid(m.id)} >drop*</button>
 				 <button onClick={() => pick(null, m)} >watch</button>
-				 <button onClick={() => rem(m)} >drop</button>
+				 <button onClick={() => remidx(i)} >drop</button>
 				 </li>))}
 	      </ul> : <span></span>
   }</div>)
