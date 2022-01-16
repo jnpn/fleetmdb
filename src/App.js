@@ -15,7 +15,11 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
+import toast, { Toaster } from 'react-hot-toast';
+
 function App() {
+
+  const notify = s => () => toast(s || ('Hi ' + new Date().getFullYear()));
 
   const LIMIT = 8
   const DELAY = 400
@@ -46,7 +50,12 @@ function App() {
   }, [defaultEndPoint, searchEndPoint, search]);
 
   const pick = id => setState(prev => ({...prev, selected: id, inview: theMovie(id), viewings: viewings + 1}))
-  const reset = () => setState(prev => ({...prev, search: "", selected: null, inview: null, viewings: 0 }))
+  const reset = () => {
+    if (viewings) {
+    setState(prev => ({...prev, search: "", selected: null, inview: null, viewings: 0 }));
+    toast.success('restarted');
+    }
+  }
   const theMovie = id => titles.find(t => t.id === id)
   const research = term => setState(prev => ({...prev, search: term}))
 
@@ -56,12 +65,12 @@ function App() {
     <>
       <AppBar position="static">
         <Toolbar variant="dense">
-          <Button color="inherit">|||</Button>{" "}
+      <Button onClick={notify('© jnpn 2022-' + new Date().getFullYear())} color="inherit">|||</Button>{" "}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             fleetmbd
           </Typography>
 	  <ButtonGroup variant="contained" size="small">
-	      <Button ># ({viewings})</Button>
+      <Button onClick={notify(`Watched ${viewings} movie(s)`)}># ({viewings})</Button>
 	      <Button onClick={logged('logging reset button')(reset)}>reset</Button>
 	  </ButtonGroup>
         </Toolbar>
@@ -81,6 +90,7 @@ function App() {
 		    movie={inview}/>
 	  </main>
 	</Box>
+      <Toaster position="bottom-right" gutter={8}/>
       </Container>
     </>
   );
