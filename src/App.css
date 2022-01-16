@@ -60,8 +60,8 @@ footer {
   min-height: 400px;
   display: grid;
   grid-gap: 0.5em;
-  grid-template-areas: "search viewer"
-                       "movies viewer";
+  grid-template-areas: "search viewer history"
+                       "movies viewer history";
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 1fr 8fr;
 }
@@ -126,15 +126,18 @@ footer {
 }
 
 .viewings {
-  position: fixed;
-  right: 0;
-  top: 0;
-  margin: 1em;
-  background-color: black;
-  color: deeppink;
+    grid-area: "history";
+  /* position: fixed; */
+  /* right: 0; */
+  /* top: 0; */
+  /* margin: 1em; */
+  /* background-color: black; */
+  /* color: deeppink; */
+  background-color: beige;
+  color: gray>;
   padding: 1em;
   border-radius: 4px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .viewings.todos {
@@ -149,4 +152,20 @@ footer {
 
 .debug {
   display: none;
+}
+
+
+.viewings li {
+  list-style: none;
+  border-bottom: thin solid lightgray;
+  padding-bottom: 4px;
+}
+
+.viewings li:hover {
+    background-color: lightgray;
+}
+
+.viewings button {
+  font-size: 8pt;
+  opacity: 50%;
 }

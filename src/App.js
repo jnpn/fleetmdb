@@ -71,14 +71,14 @@ function App() {
         <Search value={search} research={research}/>
         <Movies titles={titles} loading={loading} selected={selected} search={search} pick={(id) => pick(id)}/>
         <Viewer reset={reset} movie={inview}/>
+	<History
+	  history={history}
+	  remidx={remByIndex}
+	  remid={remById}
+	  clean={clean}
+	  pick={pick}>
+	</History>
       </div>
-      <History
-        history={history}
-        remidx={remByIndex}
-        remid={remById}
-        clean={clean}
-        pick={pick}>
-      </History>
     </div>
   );
 }
