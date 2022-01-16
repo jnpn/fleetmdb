@@ -2,7 +2,7 @@ import { lowerCaseMatch } from './prelude';
 
 function loader(loading) {
     if (loading) {
-	return (<div class="ui active mini centered inline loader"></div>)
+	return (<div className="ui active mini centered inline loader"></div>)
     } else {
 	return (<p></p>);
     }
