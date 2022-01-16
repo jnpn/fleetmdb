@@ -150,3 +150,7 @@ footer {
 .debug {
   display: none;
 }
+
+.hider button {
+    width: 100%;
+}

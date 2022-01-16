@@ -1,5 +1,7 @@
 import { capitalizeAll } from "./prelude";
 
+import Hider from './Hider';
+
 function Viewer({ movie, reset }) {
   let poster =
     "https://dalk4zrp4jp3q.cloudfront.net/images/mac_YFVkNF/movie_placeholder_big_2x.png";
@@ -30,10 +32,11 @@ function Viewer({ movie, reset }) {
 	    {movie.overview.slice(0,180) + "..."}
 	    </div>
           </div>
-          <div className="extra content">
+	<Hider main={          <div className="extra content">
             <span className="right floated">{movie.release_date}</span>
             <span></span>
           </div>
+		    }><p>foo</p></Hider>
         </div>
       </div>
     );

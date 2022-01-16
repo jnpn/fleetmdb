@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react';
 import Search from './Search';
 import Movies from './Movies';
 import Viewer from './Viewer';
+import Hider from './Hider';
 
-import { title } from './prelude';
+import { title, choosing } from './prelude';
 
 function App() {
 
@@ -51,7 +52,11 @@ function App() {
       <div className="main">
         <Search value={search} research={research}/>
         <Movies titles={titles} loading={loading} selected={selected} search={search} pick={(id) => pick(id)}/>
-        <Viewer reset={reset} movie={inview}/>
+      <Hider title="toggle"
+	     main={<Viewer reset={reset} movie={inview}/>}
+             defaultTitleFn={choosing("Hide viewer", "Show Viewer")}>
+        <h1>wat</h1>
+      </Hider>
       </div>
       <div className="viewings">{viewings}</div>
     </div>
