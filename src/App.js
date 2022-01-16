@@ -50,20 +50,19 @@ function App() {
   const theMovie = id => titles.find(t => t.id === id)
   const research = term => setState(prev => ({...prev, search: term}))
 
-  const logged = msg => f => () => { console.log(msg, f); let v = f(); console.log('done'); return v; }
+  const logged = msg => f => () => { console.log(msg, f); let v = f(); console.log('logging done'); return v; }
 
   return (
     <>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar variant="dense">
           <Button color="inherit">|||</Button>{" "}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             fleetmbd
           </Typography>
 	  <ButtonGroup variant="contained" size="small">
-	      <Button># ({viewings})</Button>
-	      <Button onClick={logged('wat')(reset)}>reset</Button>
-	      <Button disabled>...</Button>
+	      <Button ># ({viewings})</Button>
+	      <Button onClick={logged('logging reset button')(reset)}>reset</Button>
 	  </ButtonGroup>
         </Toolbar>
       </AppBar>
@@ -84,7 +83,6 @@ function App() {
 	</Box>
       </Container>
     </>
-
   );
 }
 

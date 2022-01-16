@@ -19,6 +19,7 @@ function Viewer({ movie, reset }) {
         <Card sx={{maxWidth: 345}}>
           <CardMedia height="140" onClick={() => reset()}>
 	   <img src="https://i.imgur.com/GyFDs98.png"
+                height="120px"
                 title={name + " @ IMDB"}
 		alt={"movie poster for " + name}
 	   ></img>
@@ -30,8 +31,8 @@ function Viewer({ movie, reset }) {
         <Typography variant="body2" color="text.secondary">
 	    {movie.overview.slice(0,180) + "..."}
 	</Typography>
-	<Typography variant="body2" color="text.secondary">
-	    {movie.release_date}
+	<Typography variant="caption" color="text.secondary">
+	{movie.release_date}
         </Typography>
         </CardContent>
 	<CardActions>
